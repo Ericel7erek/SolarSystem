@@ -11,7 +11,7 @@ const scene = new THREE.Scene();
 // Texture Loader
 const textureLoader = new THREE.TextureLoader()
 const cubeTextureLoader = new THREE.CubeTextureLoader()
-cubeTextureLoader.setPath("/textures/cubeMap/")
+cubeTextureLoader.setPath("/textures/Standard-Cube-Map (2)/")
 // adding textures here
 const sunTexture = textureLoader.load("/textures/2k_sun.jpg")
 const mercuryTexture = textureLoader.load("/textures/2k_mercury.jpg")
