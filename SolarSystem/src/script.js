@@ -19,6 +19,9 @@ const earthTexture = textureLoader.load("/textures/2k_earth_daymap.jpg")
 const venusTexture = textureLoader.load("/textures/2k_venus_surface.jpg")
 const marsTexture = textureLoader.load("/textures/2k_mars.jpg")
 const moonTexture = textureLoader.load("/textures/2k_moon.jpg")
+const extraTexture = textureLoader.load("/textures/chiseled-cobble-bl/chiseled-cobble_albedo.png")
+const extraNormal = textureLoader.load("/textures/chiseled-cobble-bl/chiseled-cobble_normal-ogl.png")
+
 const backgroundTexture = cubeTextureLoader
 	.load( [
 				'px.png',
@@ -76,7 +79,12 @@ const moonMaterial = new THREE.MeshStandardMaterial(
     map: moonTexture
   }
   )
-
+const extraMaterial = new THREE.MeshStandardMaterial(
+  {
+    map: extraTexture,
+    normalMap: extraNormal
+  }
+)
 
 
   const sun = new THREE.Mesh(geometry, sunMaterial)
@@ -140,6 +148,14 @@ const planets = [
       },
     ],
   },
+  {
+    name: "dada",
+    radius: 2,
+    distance: 30,
+    speed: 0.005,
+    material: extraMaterial,
+    moons: []
+  }
 ];
 
 const planetMeshes = planets.map((planet) => {
