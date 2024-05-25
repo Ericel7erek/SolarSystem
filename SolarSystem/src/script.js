@@ -10,7 +10,8 @@ const scene = new THREE.Scene();
 
 // Texture Loader
 const textureLoader = new THREE.TextureLoader()
-
+const cubeTextureLoader = new THREE.CubeTextureLoader()
+cubeTextureLoader.setPath("/textures/cubeMap/")
 // adding textures here
 const sunTexture = textureLoader.load("/textures/2k_sun.jpg")
 const mercuryTexture = textureLoader.load("/textures/2k_mercury.jpg")
@@ -18,14 +19,32 @@ const earthTexture = textureLoader.load("/textures/2k_earth_daymap.jpg")
 const venusTexture = textureLoader.load("/textures/2k_venus_surface.jpg")
 const marsTexture = textureLoader.load("/textures/2k_mars.jpg")
 const moonTexture = textureLoader.load("/textures/2k_moon.jpg")
+const backgroundTexture = cubeTextureLoader
+	.load( [
+				'px.png',
+				'nx.png',
+				'py.png',
+				'ny.png',
+				'pz.png',
+				'nz.png'
+			] );
+
+
+// add background here
+  scene.background = backgroundTexture
 
 // add stuff here
 const geometry = new THREE.SphereGeometry(1,32,32)
+const pointLight = new THREE.PointLight(
+  "white",
+  2
+)
 const ambientLight = new THREE.AmbientLight(
   "white",
-  0.5
+  0.1
 )
 scene.add(ambientLight)
+
 // add materials here
 const sunMaterial = new THREE.MeshBasicMaterial(
   {
@@ -62,6 +81,8 @@ const moonMaterial = new THREE.MeshStandardMaterial(
 
   const sun = new THREE.Mesh(geometry, sunMaterial)
 scene.add(sun)
+sun.add(pointLight)
+
 sun.scale.setScalar(5)
 
 // added planets here
@@ -177,12 +198,12 @@ const renderloop = () => {
   planetMeshes.forEach((planet,index)=> {
     planet.rotation.y += planets[index].speed
     planet.position.x = Math.sin(planet.rotation.y) * planets[index].distance
-    planet.position.y = Math.cos(planet.rotation.y) * planets[index].distance
+    planet.position.z = Math.cos(planet.rotation.y) * planets[index].distance
     console.log(planet.children);
-    planet.children.forEach((moon,moonIndex) => {
+    planet.children.forEach((moon, moonIndex) => {
       moon.rotation.y += planets[index].moons[moonIndex].speed;
       moon.position.x = Math.sin(moon.rotation.y) * planets[index].moons[moonIndex].distance
-      moon.position.y = Math.cos(moon.rotation.y) * planets[index].moons[moonIndex].distance
+      moon.position.z = Math.cos(moon.rotation.y) * planets[index].moons[moonIndex].distance
     })
   })
   // earth.rotation.y += 0.01
