@@ -149,10 +149,10 @@ const planets = [
     ],
   },
   {
-    name: "dada",
+    name: "Chiseled",
     radius: 2,
     distance: 30,
-    speed: 0.005,
+    speed: 0.004,
     material: extraMaterial,
     moons: []
   }
