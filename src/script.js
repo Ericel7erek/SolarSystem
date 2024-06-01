@@ -1,12 +1,21 @@
 import * as THREE from 'three';
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { Pane } from "tweakpane";
-
+import AssetLoader from './AssetLoader'
+import Preloader from './Preloader.js'
+import assetStore from './AssetStore.js';
 // initialize pane
 const pane = new Pane();
 
 // initialize the scene
 const scene = new THREE.Scene();
+
+// AssetLoader Logic
+const assetsStore = assetStore.getState()
+
+const assetLoader = new AssetLoader()
+const preloader = new Preloader()
+// console.log(assetLoader, preloader);
 
 // Texture Loader
 const textureLoader = new THREE.TextureLoader()
@@ -170,7 +179,7 @@ const planetMeshes = planets.map((planet) => {
 
     moonMesh.scale.setScalar(moon.radius);
     moonMesh.position.x = moon.distance
-    console.log(planetMesh);
+    // console.log(planetMesh);
     planetMesh.add(moonMesh)
   })
   return planetMesh
@@ -215,7 +224,7 @@ const renderloop = () => {
     planet.rotation.y += planets[index].speed
     planet.position.x = Math.sin(planet.rotation.y) * planets[index].distance
     planet.position.z = Math.cos(planet.rotation.y) * planets[index].distance
-    console.log(planet.children);
+    // console.log(planet.children);
     planet.children.forEach((moon, moonIndex) => {
       moon.rotation.y += planets[index].moons[moonIndex].speed;
       moon.position.x = Math.sin(moon.rotation.y) * planets[index].moons[moonIndex].distance
