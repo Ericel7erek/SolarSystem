@@ -12,6 +12,8 @@ const assetsToLoad = [
       { type: 'texture', path: '/textures/2k_moon.jpg', id: 'moonTexture' },
       { type: 'texture', path: '/textures/chiseled-cobble-bl/chiseled-cobble_albedo.png', id: 'extraTexture' },
       { type: 'texture', path: '/textures/chiseled-cobble-bl/chiseled-cobble_normal-ogl.png', id: 'extraNormal' },
+      { type: 'texture', path: '/textures/alien-panels-bl/alien-panels_albedo.png', id: 'nooboTexture' },
+      { type: 'texture', path: '/textures/alien-panels-bl/alien-panels_normal-ogl.png', id: 'nooboNormal' },
       { type: 'cubeTexture', path: '/textures/Standard-Cube-Map (2)/', id: 'backgroundTexture', faces: ['px.png', 'nx.png', 'py.png', 'ny.png', 'pz.png', 'nz.png'] } 
     ]
 

@@ -30,6 +30,11 @@ const marsTexture = textureLoader.load("/textures/2k_mars.jpg")
 const moonTexture = textureLoader.load("/textures/2k_moon.jpg")
 const extraTexture = textureLoader.load("/textures/chiseled-cobble-bl/chiseled-cobble_albedo.png")
 const extraNormal = textureLoader.load("/textures/chiseled-cobble-bl/chiseled-cobble_normal-ogl.png")
+const nooboTexture = textureLoader.load("/textures/alien-panels-bl/alien-panels_albedo.png")
+const nooboNormalMap = textureLoader.load("/textures/alien-panels-bl/alien-panels_normal-ogl.png")
+
+
+
 
 const backgroundTexture = cubeTextureLoader
 	.load( [
@@ -94,6 +99,13 @@ const extraMaterial = new THREE.MeshStandardMaterial(
     normalMap: extraNormal
   }
 )
+const nooboMaterial = new THREE.MeshStandardMaterial(
+  {
+    map: nooboTexture,
+    normalMap: nooboNormalMap,
+  }
+)
+
 
 
   const sun = new THREE.Mesh(geometry, sunMaterial)
@@ -164,6 +176,26 @@ const planets = [
     speed: 0.004,
     material: extraMaterial,
     moons: []
+  },
+  {
+    name: "NooboDeathStar",
+    radius: 3,
+    distance: 40,
+    speed: 0.002,
+    material: nooboMaterial,
+    moons: [{
+        name: "Phobos",
+        radius: 0.1,
+        distance: 2,
+        speed: 0.02,
+      },
+      {
+        name: "Deimos",
+        radius: 0.2,
+        distance: 3,
+        speed: 0.015,
+        color: 0xffffff,
+      }]
   }
 ];
 
